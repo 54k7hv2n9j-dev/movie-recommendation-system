@@ -21,7 +21,7 @@ movies['tags'] = movies['overview']
 # TF-IDF Vectorization
 tfidf = TfidfVectorizer(stop_words='english')
 
-vectors = tfidf.fit_transform(movies['tags']).toarray()
+vectors = tfidf.fit_transform(movies['tags'])
 
 # Cosine Similarity
 similarity = cosine_similarity(vectors)
@@ -40,7 +40,11 @@ def recommend(movie):
 
     distances = similarity[index]
 
-    movie_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
+    movie_list = sorted(
+        list(enumerate(distances)),
+        reverse=True,
+        key=lambda x: x[1]
+    )[1:6]
 
     recommendations = []
 
@@ -48,7 +52,3 @@ def recommend(movie):
         recommendations.append(movies.iloc[i[0]].title)
 
     return recommendations
-
-
-# Test
-print(recommend('Avatar'))
