@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Movie Recommendation System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🎬 Movie Recommendation System</h1>
+
+        <p>Find similar movies using NLP.</p>
+
+        <form method="POST">
+
+            <input type="text" name="movie" placeholder="Enter movie name" required>
+
+            <button type="submit">Recommend</button>
+
+        </form>
+
+        <div class="results">
+
+            {% for movie in recommendations %}
+
+                <h3>{{ movie }}</h3>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
